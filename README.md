@@ -22,7 +22,7 @@ Interface de linha de comando para o administrador do sistema. Permite a realiza
 ### `classes/`
 Contém o arquivo `Produto.py`, que define a classe de entidade que representa o produto. Essa classe mapeia a estrutura dos elementos salvos no banco de dados.
 
-### 🔹 `data/`
+### `data/`
 Contém o banco de dados SQLite (`mercado.db`) e o arquivo de dados original (`produtos.csv`). Também centraliza o arquivo `gerenciamento_db.py`, responsável pelas seguintes rotinas essenciais:
 * Criação do banco de dados (`criar_db`);
 * Gerenciamento e verificação de conexões com o banco (`verificar_conexao_db`);

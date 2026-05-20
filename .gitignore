@@ -1,13 +1,7 @@
-# Cache do Python (Arquivos compilados)
 **/__pycache__/
 *.py[cod]
 *$py.class
-
-# Banco de Dados Local (SQLite)
-# O banco deve ser gerado localmente executando o main_db.py
 data/mercado.db
-
-# Configurações locais do VS Code / Ambientes Virtuais
 .vscode/
 .idea/
 venv/
