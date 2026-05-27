@@ -5,6 +5,8 @@ from sqlalchemy import Engine, create_engine, select
 from classes.Produto import Base, Produto
 from sqlalchemy.orm import Session
 
+from data.web_scraping import realizar_scraping_produtos
+
 DB_PATH = os.path.join("data", "mercado.db")
 CSV_PATH = os.path.join("data", "produtos.csv")
 CONN_STR = f"sqlite:///{DB_PATH}"
@@ -78,6 +80,10 @@ def sincronizar_db_csv (engine: Engine, caminho_csv: str) -> None:
         sys.exit(1)
 
 def alimentar_db() -> None:
+    sucesso_scraping = realizar_scraping_produtos(CSV_PATH)
+    if not sucesso_scraping:
+        sys.exit(1)
+        
     engine = verificar_conexao_db()
     sincronizar_db_csv(engine, CSV_PATH)
 
