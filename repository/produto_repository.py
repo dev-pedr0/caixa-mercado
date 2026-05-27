@@ -4,7 +4,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from classes.Produto import Produto
 
-
 class ProdutoRepository:
     def __init__(self, engine):
         self.engine = engine

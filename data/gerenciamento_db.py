@@ -11,6 +11,7 @@ from data.web_scraping import realizar_scraping_produtos
 
 DB_PATH = os.path.join("data", "mercado.db")
 CSV_PATH = os.path.join("data", "produtos.csv")
+JSON_PATH = os.path.join("data", "clientes.json")
 CONN_STR = f"sqlite:///{DB_PATH}"
 
 def criar_db() -> None:
@@ -49,6 +50,18 @@ def verificar_csv(caminho_csv: str) -> pd.DataFrame:
         print(f"Erro ao ler o arquivo CSV: {e}")
         sys.exit(1)
 
+def verificar_json(caminho_json: str) -> pd.DataFrame:
+    try:
+        df = pd.read_json(caminho_json)
+        return df
+    except FileNotFoundError:
+        print(f"Erro Crítico: O arquivo CSV em '{caminho_json}' não foi encontrado.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Erro ao ler o arquivo CSV: {e}")
+        sys.exit(1)
+
+
 def sincronizar_db_csv (engine: Engine, caminho_csv: str) -> None:
     df = verificar_csv(caminho_csv)
     
@@ -78,7 +91,30 @@ def sincronizar_db_csv (engine: Engine, caminho_csv: str) -> None:
             print("Sincronização concluída com sucesso!")
 
     except Exception as e:
-        print(f"Erro inesperado durante a alimentação do banco: {e}")
+        print(f"Erro inesperado durante a alimentação do banco com produtos: {e}")
+        sys.exit(1)
+
+def sincronizar_db_json (engine: Engine, caminho_json: str) -> None:
+    df = verificar_json(caminho_json)
+
+    print("Iniciando a sincronização de clientes...")
+
+    try:
+        with Session(engine) as session:
+            for _, linha in df.iterrows():
+                nome_cliente = str(linha["nome"]).strip()
+
+                stmt = select(Cliente).where(Cliente.nome == nome_cliente)
+                cliente_existente = session.scalar(stmt)
+
+                if not cliente_existente:
+                    novo_cliente = Cliente(nome=nome_cliente)
+                    session.add(novo_cliente)
+            session.commit()
+
+            print("Sincronização concluída com sucesso!")
+    except Exception as e:
+        print(f"Erro inesperado durante a alimentação do banco com clientes: {e}")
         sys.exit(1)
 
 def alimentar_db() -> None:
@@ -88,6 +124,7 @@ def alimentar_db() -> None:
         
     engine = verificar_conexao_db()
     sincronizar_db_csv(engine, CSV_PATH)
+    sincronizar_db_json(engine, JSON_PATH)
 
 def salvar_banco_para_csv(crud) -> None:
     resultado = crud.listar_produtos()
