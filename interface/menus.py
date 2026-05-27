@@ -47,6 +47,13 @@ def exibir_menu_caixa():
     opcao = input("Escolha uma opção: ").strip()
     return opcao
 
+def exibir_menu_registro_cliente():
+    print("\n" + "-" * 50)
+    print("      IDENTIFICAÇÃO DE CLIENTE (INÍCIO DO ATENDIMENTO)      ")
+    print("-" * 50)
+    opcao = input("Digite o ID do cliente / Pressione Enter para cadastrar Novo Cliente / Digite '0' para sair: ").strip()
+    return opcao
+
 def exibir_menu_compra(nome_cliente, produtos_banco):
     print("\n" + "=" * 50)
     print(f"      ATENDIMENTO DO {nome_cliente}    ")

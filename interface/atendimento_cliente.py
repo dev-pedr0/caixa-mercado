@@ -1,28 +1,32 @@
+from interface.gerenciamento_cliente import registrar_cliente
 from interface.gerenciamento_produtos import adicionar_produto_cliente, buscar_produto, buscar_produtos_estoque
 from interface.menus import exibir_menu_compra
 from interface.registro_atendimento import gerar_dados_nota, imprimir_nota, registrar_atendimento
-from utils.geradores import gerar_cliente
 from utils.validador import validar_numero
 
 OPCAO_ENCERRAR = 0
 IDX_TOTAL_COMPRA = 4
 
-def atender_cliente(numero_cliente, total_atendimento, crud):
-    numero_cliente, nome_cliente = gerar_cliente(numero_cliente)
-    total_compra = comprar_produtos(nome_cliente, crud)
+def atender_cliente(total_atendimento, crud_produto, crud_cliente):
+    cliente = registrar_cliente(crud_cliente)
+    if cliente is None:
+        print("Atendimento abortado sem registrar compras.")
+        return
+    
+    nome_cliente = cliente.nome
+    total_compra = comprar_produtos(nome_cliente, crud_produto)
     registrar_atendimento(
         total_atendimento,
         nome_cliente,
         total_compra
     )
-    return numero_cliente
 
-def comprar_produtos(nome_cliente, crud):
+def comprar_produtos(nome_cliente, crud_produto):
     compras_cliente = []
     id_item = 1
     
     while True:
-        produtos = buscar_produtos_estoque(crud)
+        produtos = buscar_produtos_estoque(crud_produto)
         if produtos is None:
             break
         opcao = exibir_menu_compra(nome_cliente, produtos)
@@ -32,14 +36,14 @@ def comprar_produtos(nome_cliente, crud):
             imprimir_nota(dados_nota)
             return dados_nota[IDX_TOTAL_COMPRA]
         
-        compra_validada = validar_compra(opcao, crud, id_item)
+        compra_validada = validar_compra(opcao, crud_produto, id_item)
         if compra_validada is None:
             continue
         compras_cliente.append(compra_validada)
         id_item += 1
 
-def validar_compra(opcao, crud, id_item):  
-    produto_banco = buscar_produto(opcao, crud)
+def validar_compra(opcao, crud_produto, id_item):  
+    produto_banco = buscar_produto(opcao, crud_produto)
     if produto_banco == None:
         return None 
 
@@ -51,7 +55,7 @@ def validar_compra(opcao, crud, id_item):
     
     try:
         item_cliente = adicionar_produto_cliente(
-            id_item, crud, produto_banco, nova_quantidade, quantidade_compra
+            id_item, crud_produto, produto_banco, nova_quantidade, quantidade_compra
         )
         print(f"{quantidade_compra}x '{produto_banco.nome}' adicionado ao carrinho!")
         return item_cliente       

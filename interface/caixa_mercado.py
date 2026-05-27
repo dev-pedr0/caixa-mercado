@@ -8,17 +8,12 @@ def caixa_mercado():
     alimentar_db()
     crud_produto = conectar_crud_produto()
     crud_cliente = conectar_crud_cliente()
-    numero_cliente = 0
     total_atendimento = []
     while True:
         opcao = exibir_menu_caixa()
         match opcao:
             case "1":
-                numero_cliente = atender_cliente(
-                    numero_cliente,
-                    total_atendimento,
-                    crud_produto
-                )
+                atender_cliente(total_atendimento, crud_produto, crud_cliente)
             case "2":
                 fechar_caixa(total_atendimento, crud_produto)
                 salvar_produtos_para_csv(crud_produto)

@@ -1,6 +1,26 @@
 [
-  { "nome": "Cliente 1" },
-  { "nome": "Cliente 2" },
-  { "nome": "Cliente 3" },
-  { "nome": "Cliente 4" }
+    {
+        "id": 1,
+        "nome": "Cliente 1"
+    },
+    {
+        "id": 2,
+        "nome": "Cliente 2"
+    },
+    {
+        "id": 3,
+        "nome": "Cliente 3"
+    },
+    {
+        "id": 4,
+        "nome": "Cliente 4"
+    },
+    {
+        "id": 5,
+        "nome": "Cliente X"
+    },
+    {
+        "id": 6,
+        "nome": "Cliente 7"
+    }
 ]
