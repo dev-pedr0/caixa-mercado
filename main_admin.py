@@ -1,4 +1,4 @@
-from data.gerenciamento_db import salvar_banco_para_csv
+from data.gerenciamento_db import salvar_produtos_para_csv
 from interface.menus import exibir_menu_admin
 from utils.conexoes import conectar_crud_cliente, conectar_crud_produto
 
@@ -185,7 +185,7 @@ def iniciar_interface_admin():
             case "13":
                 print("\n--- SALVAR BANCO EM CSV ---")
                 print("\nSincronizando dados com o arquivo de estoque...")
-                salvar_banco_para_csv(crud_produto)
+                salvar_produtos_para_csv(crud_produto)
 
             case "0":
                 print("\nSaindo do Painel Administrativo...")

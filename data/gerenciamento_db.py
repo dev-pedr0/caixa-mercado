@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import pandas as pd
@@ -126,8 +127,8 @@ def alimentar_db() -> None:
     sincronizar_db_csv(engine, CSV_PATH)
     sincronizar_db_json(engine, JSON_PATH)
 
-def salvar_banco_para_csv(crud) -> None:
-    resultado = crud.listar_produtos()
+def salvar_produtos_para_csv(crud_produto) -> None:
+    resultado = crud_produto.listar_produtos()
     if not resultado["sucesso"]:
         print(f"Erro ao ler banco para atualizar CSV: {resultado['mensagem']}")
     
@@ -146,3 +147,24 @@ def salvar_banco_para_csv(crud) -> None:
         print("\nAtualização de produtos feita com sucesso!")
     except Exception as e:
         print(f"Erro crítico ao salvar o produtos em arquivo CSV: {e}")
+
+def salvar_clientes_para_json(crud_cliente) -> None:
+    resultado = crud_cliente.listar_clientes()
+    if not resultado["sucesso"]:
+        print(f"Erro ao ler banco para atualizar JSON: {resultado['mensagem']}")
+        return
+        
+    clientes_banco = resultado["dado"]
+    try:
+        dados_clientes = [
+            {
+                "id": cli.id,
+                "nome": cli.nome
+            }
+            for cli in clientes_banco
+        ]
+        with open(JSON_PATH, 'w', encoding='utf-8') as f:
+            json.dump(dados_clientes, f, indent=4, ensure_ascii=False)
+        print("Atualização de clientes feita com sucesso!")
+    except Exception as e:
+        print(f"Erro crítico ao salvar os clientes em arquivo JSON: {e}")

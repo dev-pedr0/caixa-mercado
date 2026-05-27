@@ -1,12 +1,13 @@
-from data.gerenciamento_db import alimentar_db, salvar_banco_para_csv
+from data.gerenciamento_db import alimentar_db, salvar_clientes_para_json, salvar_produtos_para_csv
 from interface.atendimento_cliente import atender_cliente
 from interface.fechamento_caixa import fechar_caixa
 from interface.menus import exibir_menu_caixa
-from utils.conexoes import conectar_crud_produto
+from utils.conexoes import conectar_crud_cliente, conectar_crud_produto
 
 def caixa_mercado():
     alimentar_db()
-    crud = conectar_crud_produto()
+    crud_produto = conectar_crud_produto()
+    crud_cliente = conectar_crud_cliente()
     numero_cliente = 0
     total_atendimento = []
     while True:
@@ -16,11 +17,12 @@ def caixa_mercado():
                 numero_cliente = atender_cliente(
                     numero_cliente,
                     total_atendimento,
-                    crud
+                    crud_produto
                 )
             case "2":
-                fechar_caixa(total_atendimento, crud)
-                salvar_banco_para_csv(crud)
+                fechar_caixa(total_atendimento, crud_produto)
+                salvar_produtos_para_csv(crud_produto)
+                salvar_clientes_para_json(crud_cliente)
                 break
             case _:
                 print("Valor inválido")
