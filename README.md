@@ -61,3 +61,5 @@ Contém módulos auxiliares com funções puras e repetitivas utilizadas em todo
 * `conexoes.py`: Funções para instanciar as conexões do banco, repositório, serviço e controle;
 * `validador.py`: Funções de validação de entradas do usuário (ex: garantir que o input de quantidade seja um número válido);
 * `geradores.py`: Geradores automáticos de nomes de clientes sequenciais (ex: Cliente 1, Cliente 2) e captura da data atual do sistema.
+
+Link do projeto no github: https://github.com/dev-pedr0/caixa-mercado
