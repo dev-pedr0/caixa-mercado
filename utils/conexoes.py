@@ -1,3 +1,4 @@
+from controller.cliente_crud import ClienteCRUD
 from controller.produto_crud import ProdutoCRUD
 from data.gerenciamento_db import verificar_conexao_db
 from repository.cliente_repository import ClienteRepository
@@ -37,3 +38,10 @@ def conectar_servico_cliente():
     repositorio = ClienteRepository(engine)
     servico = ClienteService(repositorio)
     return servico
+
+def conectar_crud_cliente():
+    engine = verificar_conexao_db()
+    repositorio = ClienteRepository(engine)
+    servico = ClienteService(repositorio)
+    crud = ClienteCRUD(servico)
+    return crud
