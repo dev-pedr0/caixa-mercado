@@ -36,7 +36,7 @@ def verificar_conexao_db() -> Engine:
 
 def verificar_csv(caminho_csv: str) -> pd.DataFrame:
     try:
-        df = pd.read_csv(caminho_csv)
+        df = pd.read_csv(caminho_csv, sep=',')
         return df
     except FileNotFoundError:
         print(f"Erro Crítico: O arquivo CSV em '{caminho_csv}' não foi encontrado.")

@@ -14,7 +14,7 @@ class ProdutoRepository:
             with Session(self.engine) as session:
                 session.add(produto)
                 session.commit()
-                session.refresh(produto)
+                #session.refresh(produto)
                 return produto
         except SQLAlchemyError as e:
             raise RuntimeError(f"Erro no repositório ao criar produto: {e}")
@@ -48,7 +48,7 @@ class ProdutoRepository:
             with Session(self.engine) as session:
                 produto_persistido = session.merge(produto_atualizado)
                 session.commit()
-                session.refresh(produto_persistido)
+                #session.refresh(produto_persistido)
                 return produto_persistido
         except SQLAlchemyError as e:
             raise RuntimeError(f"Erro no repositório ao atualizar produto: {e}")
