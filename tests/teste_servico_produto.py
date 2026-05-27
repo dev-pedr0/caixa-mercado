@@ -2,7 +2,7 @@ from service.produto_service import ConflitoRegraErro, RegistroNaoEncontradoErro
 from utils.conexoes import conectar_servico_produto
 
 
-def executar_testes_servico():
+def executar_testes_servico_produto():
     print("=" * 60)
     print("     INICIANDO TESTES DA CAMADA DE SERVIÇO (CLIENTE)     ")
     print("=" * 60 + "\n")
@@ -30,7 +30,7 @@ def executar_testes_servico():
     print(">>> Teste 2: Criando um novo produto válido...")
     try:
         novo_prod = servico.criar_produto(nome="Produto Inédito X", quantidade=20, preco=15.90)
-        print(f"✅ Sucesso! Produto criado: {novo_prod}")
+        print(f"Sucesso! Produto criado: {novo_prod}")
         id_produto_teste = novo_prod.id
     except Exception as e:
         print(f"Falha ao criar produto válido: {e}")
@@ -136,6 +136,3 @@ def executar_testes_servico():
     print("\n" + "=" * 60)
     print("              FIM DOS TESTES DA CAMADA DE SERVIÇO        ")
     print("=" * 60)
-
-if __name__ == "__main__":
-    executar_testes_servico()

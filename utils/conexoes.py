@@ -2,6 +2,7 @@ from controller.produto_crud import ProdutoCRUD
 from data.gerenciamento_db import verificar_conexao_db
 from repository.cliente_repository import ClienteRepository
 from repository.produto_repository import ProdutoRepository
+from service.cliente_service import ClienteService
 from service.produto_service import ProdutoService
 
 def conectar_engine():
@@ -30,3 +31,9 @@ def conectar_repositorio_cliente():
     engine = verificar_conexao_db()
     repositorio = ClienteRepository(engine)
     return repositorio
+
+def conectar_servico_cliente():
+    engine = verificar_conexao_db()
+    repositorio = ClienteRepository(engine)
+    servico = ClienteService(repositorio)
+    return servico

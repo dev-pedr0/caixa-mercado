@@ -16,6 +16,19 @@ def exibir_menu_admin():
     opcao = input("Escolha uma opção: ").strip()
     return opcao
 
+def exibir_menu_testes():
+    print("\n" + "=" * 50)
+    print("      PAINEL DE TESTES - CAMADAS DO CÓDIGO     ")
+    print("=" * 50)
+    print("[1] Testar o Repositório de Produtos")
+    print("[2] Testar o Repositório de Clientes")
+    print("[3] Testar o Serviço de Produtos")
+    print("[4] Testar o Serviço de Clientes")
+    print("[0] Sair do Painel de testes")
+    print("=" * 50)
+    opcao = input("Escolha uma opção: ").strip()
+    return opcao
+
 def exibir_menu_caixa():
     print("\n" + "=" * 50)
     print("      PAINEL DO CAIXA    ")

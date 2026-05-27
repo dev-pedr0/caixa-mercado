@@ -68,6 +68,3 @@ def executar_testes_repositorio_produto():
         print(f"\n[FALHA NO TESTE] A camada superior capturou um erro: {e}")
         
     print("\n=== FIM DOS TESTES DO REPOSITÓRIO ===")
-
-if __name__ == "__main__":
-    executar_testes_repositorio()
