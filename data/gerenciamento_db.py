@@ -2,7 +2,9 @@ import os
 import sys
 import pandas as pd
 from sqlalchemy import Engine, create_engine, select
-from classes.Produto import Base, Produto
+from classes.Modelo_Base import Base
+from classes.Produto import Produto
+from classes.Cliente import Cliente
 from sqlalchemy.orm import Session
 
 from data.web_scraping import realizar_scraping_produtos
@@ -20,7 +22,7 @@ def criar_db() -> None:
     
     Base.metadata.create_all(engine)
     
-    print("Tabela 'produtos' criada com sucesso!")
+    print("Tabela 'produtos' e 'clientes' criada com sucesso!")
 
 def verificar_conexao_db() -> Engine:
     if not os.path.exists(DB_PATH):
