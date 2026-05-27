@@ -2,11 +2,11 @@ from data.gerenciamento_db import alimentar_db, salvar_banco_para_csv
 from interface.atendimento_cliente import atender_cliente
 from interface.fechamento_caixa import fechar_caixa
 from interface.menus import exibir_menu_caixa
-from utils.conexoes import conectar_crud
+from utils.conexoes import conectar_crud_produto
 
 def caixa_mercado():
     alimentar_db()
-    crud = conectar_crud()
+    crud = conectar_crud_produto()
     numero_cliente = 0
     total_atendimento = []
     while True:

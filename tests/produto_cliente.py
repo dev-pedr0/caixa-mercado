@@ -1,5 +1,5 @@
 from service.produto_service import ConflitoRegraErro, RegistroNaoEncontradoErro, ValidacaoErro
-from utils.conexoes import conectar_servico
+from utils.conexoes import conectar_servico_produto
 
 
 def executar_testes_servico():
@@ -7,7 +7,7 @@ def executar_testes_servico():
     print("     INICIANDO TESTES DA CAMADA DE SERVIÇO (CLIENTE)     ")
     print("=" * 60 + "\n")
 
-    servico = conectar_servico()
+    servico = conectar_servico_produto()
 
     id_produto_teste = None
     # -------------------------------------------------------------------------

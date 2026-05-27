@@ -1,9 +1,8 @@
 from classes.Produto import Produto
-from utils.conexoes import conectar_repositorio
+from utils.conexoes import conectar_repositorio_produto
 
-def executar_testes_repositorio():
-    print("=== INICIANDO TESTES DO REPOSITÓRIO ===\n")
-    repositorio = conectar_repositorio()
+def executar_testes_repositorio_produto():
+    repositorio = conectar_repositorio_produto()
     
     try:
         # ---------------------------------------------------------------------

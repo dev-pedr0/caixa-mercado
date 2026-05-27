@@ -1,9 +1,9 @@
 from data.gerenciamento_db import salvar_banco_para_csv
 from interface.menus import exibir_menu_admin
-from utils.conexoes import conectar_crud
+from utils.conexoes import conectar_crud_produto
 
 def iniciar_interface_admin():
-    crud = conectar_crud()
+    crud = conectar_crud_produto()
 
     while True:
         opcao = exibir_menu_admin()
