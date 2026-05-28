@@ -11,37 +11,31 @@ def conectar_engine():
     return engine
 
 def conectar_repositorio_produto():
-    engine = verificar_conexao_db()
+    engine = conectar_engine()
     repositorio = ProdutoRepository(engine)
     return repositorio
 
 def conectar_servico_produto():
-    engine = verificar_conexao_db()
-    repositorio = ProdutoRepository(engine)
+    repositorio = conectar_repositorio_produto()
     servico = ProdutoService(repositorio)
     return servico
 
 def conectar_crud_produto():
-    engine = verificar_conexao_db()
-    repositorio = ProdutoRepository(engine)
-    servico = ProdutoService(repositorio)
+    servico = conectar_servico_produto()
     crud = ProdutoCRUD(servico)
     return crud
 
 def conectar_repositorio_cliente():
-    engine = verificar_conexao_db()
+    engine = conectar_engine()
     repositorio = ClienteRepository(engine)
     return repositorio
 
 def conectar_servico_cliente():
-    engine = verificar_conexao_db()
-    repositorio = ClienteRepository(engine)
+    repositorio = conectar_repositorio_cliente()
     servico = ClienteService(repositorio)
     return servico
 
 def conectar_crud_cliente():
-    engine = verificar_conexao_db()
-    repositorio = ClienteRepository(engine)
-    servico = ClienteService(repositorio)
+    servico = conectar_servico_cliente()
     crud = ClienteCRUD(servico)
     return crud

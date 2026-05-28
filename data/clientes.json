@@ -22,5 +22,9 @@
     {
         "id": 6,
         "nome": "Cliente 7"
+    },
+    {
+        "id": 7,
+        "nome": "Ele mesmo"
     }
 ]
