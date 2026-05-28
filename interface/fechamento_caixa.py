@@ -22,7 +22,7 @@ def resumir_atendimentos(dados, zerados):
         print("Nenhum atendimento realizado.")
         return
     exibir_tabela_resumo_atendimentos(atendimentos)
-    print(f"\nTotal de vendas: {total_vendas}")
+    print(f"\nTotal de vendas: R$ {total_vendas:.2f}".replace('.', ','))
     if not zerados:
         print("\nNenhum produto zerado")
     else:

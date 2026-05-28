@@ -56,7 +56,7 @@ def exibir_menu_registro_cliente():
 
 def exibir_menu_compra(nome_cliente, produtos_banco):
     print("\n" + "=" * 50)
-    print(f"      ATENDIMENTO DO {nome_cliente}    ")
+    print(f"      ATENDIMENTO DO {nome_cliente.upper()}    ")
     print("=" * 50)
     
     if not produtos_banco:

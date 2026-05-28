@@ -30,7 +30,7 @@ def imprimir_nota(dados):
         return
     exibir_tabela_nota_fiscal(produtos)
     print(f"\nItens: {total_itens}")
-    print(f"Total: {total_compra}\n")
+    print(f"Total de vendas: R$ {total_compra:.2f}\n")
 
 def registrar_atendimento(total_atendimento, nome_cliente, total_compra):
     registro = [nome_cliente, total_compra]
